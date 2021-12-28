@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --lights: block;
+  --lights-helper: block;
+  --shadows: none;
+}
+
+body {
+  width: 1600px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow-y: hidden;
+}
+
+.scene {
+  width: 100%;
+  height: 700px;
+  margin: 80px;
+  perspective: 1000px;
+}
+
+.room {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px);
+  animation: roomMove 10s infinite;
+}
+
+.wall-right {
+  position: absolute;
+  transform: rotateY(90deg) translateZ(350px);
+  background: rgb(95, 95, 95);
+  height: 700px;
+  width: 1500px;
+}
+.wall-front {
+  position: absolute;
+  transform: rotateY(180deg) translateZ(350px) translateX(-100px);
+  background: rgb(95, 95, 95);
+  height: 700px;
+  width: 1000px;
+}
+.wall-front::after,
+.wall-left::after,
+.wall-right::after,
+.cealing::after,
+.floor::after {
+  content: "";
+  display: var(--lights);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.85);
+}
+.wall-left {
+  position: absolute;
+  transform: rotateY(-90deg) translateZ(650px);
+  background-color: rgb(95, 95, 95);
+  height: 700px;
+  width: 1500px;
+}
+.cealing {
+  position: absolute;
+  transform: rotateX(90deg) translateZ(349px);
+  background-color: rgb(192, 192, 192);
+  height: 700px;
+  width: 1500px;
+}
+.floor {
+  position: absolute;
+  background-image: url(img/laminat.jpg);
+  background-size: 10%;
+  transform: rotateX(-90deg) translateZ(149px) translateY(-200px)
+    translateX(100px);
+  height: 1100px;
+  width: 1000px;
+}
+
+.chandelier {
+  position: absolute;
+  width: 300px;
+  height: 220px;
+  background-image: url(img/chandelier.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translateX(450px) translateY(-50px) translateZ(100px);
+}
+#toggle-lights {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(
+    circle,
+    rgb(206, 200, 127) 0%,
+    rgba(206, 200, 127, 0.6) 50%,
+    rgba(206, 200, 127, 0) 100%
+  );
+  border-radius: 50%;
+  transform: translateX(145px) translateY(200px);
+  cursor: pointer;
+}
+#lights-helper {
+  display: var(--lights-helper);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  color: rgb(255, 234, 1, 0.7);
+  animation: arrowHover 3s infinite;
+}
+
+.desk-top {
+  position: absolute;
+  width: 150px;
+  height: 250px;
+  background-color: rgb(22, 22, 22);
+  clip-path: polygon(
+    0 0,
+    41% 0,
+    68% 0,
+    100% 0,
+    100% 12%,
+    90% 21%,
+    90% 78%,
+    100% 89%,
+    100% 100%,
+    64% 100%,
+    43% 100%,
+    0 100%
+  );
+  transform: translateX(110px) translateY(430px) translateZ(-50px)
+    rotateX(90deg);
+  box-shadow: inset 2px 10px 30px #000;
+}
+
+.desk-shadow {
+  display: var(--shadows);
+  position: absolute;
+  width: 130px;
+  height: 250px;
+  clip-path: polygon(
+    0 0,
+    41% 0,
+    68% 0,
+    100% 0,
+    100% 12%,
+    90% 21%,
+    90% 78%,
+    100% 89%,
+    100% 100%,
+    64% 100%,
+    43% 100%,
+    0 100%
+  );
+  transform: translateX(105px) translateY(574px) translateZ(-80px)
+    rotateX(90deg);
+  background-image: radial-gradient(#0008, #0000);
+}
+
+.desk-leg-left {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: rgb(22, 22, 22);
+  clip-path: polygon(
+    0 0,
+    41% 0,
+    68% 0,
+    100% 0,
+    100% 5%,
+    8% 5%,
+    100% 93%,
+    100% 100%,
+    0 100%,
+    0 91%,
+    88% 92%,
+    0 6%
+  );
+  transform: translateX(110px) translateY(554px) translateZ(-165px);
+}
+
+.desk-leg-right {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: rgb(22, 22, 22);
+  clip-path: polygon(
+    0 0,
+    41% 0,
+    68% 0,
+    100% 0,
+    100% 5%,
+    8% 5%,
+    100% 93%,
+    100% 100%,
+    0 100%,
+    0 91%,
+    88% 92%,
+    0 6%
+  );
+  transform: translateX(110px) translateY(554px) translateZ(75px);
+}
+
+.icarus-project-wallpaper {
+  position: absolute;
+  width: 450px;
+  height: 300px;
+  border: 3px solid black;
+  transform: translateX(300px) translateY(100px) rotateY(180deg);
+}
+
+.rlbg-project-wallpaper {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  border: 3px solid black;
+  transform: translateX(600px) translateY(100px) rotateY(180deg);
+}
+.rlbg-project-wallpaper::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 99999;
+}
+
+@keyframes roomMove {
+  0%,
+  100% {
+    transform: rotateY(7deg);
+  }
+  50% {
+    transform: rotateY(-7deg);
+  }
+}
+
+@keyframes arrowHover {
+  0%,
+  100% {
+    transform: translateX(230px) translateY(290px) rotateZ(40deg);
+  }
+  50% {
+    transform: translateX(170px) translateY(230px) rotateZ(40deg);
+  }
+}
